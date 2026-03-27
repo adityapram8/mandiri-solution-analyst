@@ -1,0 +1,36 @@
+METHOD /POST 
+{{HOST}}/api/v1/registration
+
+// REQUEST //
+    Header
+    Content-Type:application/json
+    x-api-Key: {{API_KEY}}
+    Authorization: Bearer {{ACCESS_TOKEN}}
+    Body
+    {
+        "nama": "Raditya Dika",
+        "email": "user@yopmail.com",
+        "phoneNumber": "08788848469",
+        "password": "p4ssw0rd",
+        "photo": "base64-encoded-image",
+        "ktp": "base64-encoded-image"
+    }
+      
+// RESPONSE //
+// Success Response //
+{
+    "status": true,
+    "code": 201,
+    "message": "Success",
+    "data": {
+        "message": "User Registration Successfully",
+        "userId": "abcd1234-5678-90ef-ghij-klmnopqrstuv"
+    }
+}
+// Failed Response //
+{
+    "status": true,
+    "code": 404,
+    "message": "Registration failed email/phone number already exists or invalid data",
+    "data": null
+}

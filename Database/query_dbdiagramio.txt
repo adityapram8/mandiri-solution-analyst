@@ -1,0 +1,75 @@
+// Use DBML to define your database structure
+// Docs: https://dbml.dbdiagram.io/docs
+
+
+Table notification {
+  notification_id int [not null]
+  user_id uuid [not null]
+  message char [not null]
+  send_at timestamp [not null]
+  created_at timestamp [not null]
+  updated_at timestamp [not null]
+  delete_at timestamp [not null]
+}
+
+Table biometrics {
+  biometric_id int
+  fingerprint char
+  face_id char
+}
+
+Table users {
+  user_id uuid [primary key]
+  email varchar [not null]
+  name varchar [not null]
+  address varchar [not null]
+  phone_number int [not null]
+  password char [not null]
+  photo char [not null]
+  ktp char [not null]
+  biometric_id int [not null]
+  created_at timestamp [not null]
+  updated_at timestamp [not null]
+  delete_at timestamp [not null]
+}
+
+Table loans {
+  loan_id uuid [primary key]
+  user_id uuid [not null]
+  loan_installment_id uuid [not null]
+  amount int [not null]
+  tenor_month int [not null]
+  status_loan_id uuid [not null]
+  due_date_at timestamp [not null]
+  payment_at timestamp [not null]
+  created_at timestamp [not null]
+  updated_at timestamp [not null]
+}
+
+Table loans_installment {
+  loan_installment_id uuid [primary key]
+  loan_id uui [not null]
+  installment_number int [not null]
+  payment_method varchar [not null]
+  payment_at timestamp [not null]
+  created_at timestamp [not null]
+  updated_at timestamp [not null]
+}
+
+Table status_loans {
+  status_loan_id uuid [primary key]
+  description varchar [not null]
+  created_at timestamp [not null]
+  updated_at timestamp [not null]
+}
+
+// Many-to-one
+Ref notification_service: notification.user_id > users.user_id
+
+Ref: biometrics.biometric_id < users.biometric_id
+
+Ref: loans.user_id > users.user_id
+
+Ref: loans_installment.loan_id > loans.loan_installment_id
+
+Ref: loans.status_loan_id > status_loans.status_loan_id

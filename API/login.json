@@ -1,0 +1,35 @@
+METHOD /POST 
+{{HOST}}/api/v1/auth/login
+
+// REQUEST //
+    Header
+    Content-Type:application/json
+    x-api-Key: {{API_KEY}}
+    Authorization: Bearer {{ACCESS_TOKEN}}
+    Body
+    {
+        "email": "user@yopmail.com",
+        "password": "p4ssw0rd",
+        "biometricData": "base64EncodedBiometricData"
+    }
+      
+// RESPONSE //
+// Success Response //
+{
+    "status": true,
+    "code": 200,
+    "message": "Success",
+    "data": {
+        "message": "User Login Successfully",
+        "userId": "abcd1234-5678-90ef-ghij-klmnopqrstuv"
+    }
+}
+// Failed Response //
+{
+    "status": true,
+    "code": 404,
+    "message": "Login Failed",
+    "data": {
+        "message": "Invalid email or password"
+    }
+}
