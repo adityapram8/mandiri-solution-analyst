@@ -1,0 +1,37 @@
+METHOD /GET 
+{{HOST}}/api/v1/notification
+
+// REQUEST //
+    Header
+    Content-Type:application/json
+    x-api-Key: {{API_KEY}}
+    Authorization: Bearer {{ACCESS_TOKEN}}
+    Body
+    {
+        "userId": "abcd1234-5678-90ef-ghij-klmnopqrstuv",
+        "apiKey": "2182hjdhshdbwbdgwsdwa",
+        "appId": "ajxjskd2i3udhdh",
+        "deviceToken": "1234567890abcdef123"
+    } 
+// RESPONSE //
+// Success Response //
+{
+    "status": true,
+    "code": 200,
+    "message": "Success",
+    "data": {
+        "notificationId": "123e4567-e89b-12d3-a456-426614174000",
+        "type": "Notification",
+        "message": "Loan Approved Successfully",
+        "sendAt": "2024-06-01T12:00:00Z",
+        "createAt": "2024-06-01T11:00:00Z",
+        "updateAt": "2024-06-01T11:30:00Z"
+    }
+}
+// Failed Response //
+{
+    "status": true,
+    "code": 404,
+    "message": "Failed Get Notification",
+    "data": null
+}

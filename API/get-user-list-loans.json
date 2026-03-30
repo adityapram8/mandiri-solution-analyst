@@ -1,0 +1,59 @@
+METHOD /GET
+{{HOST}}/api/v1/user/loan
+
+// REQUEST //
+    Header
+    Content-Type:application/json
+    x-api-Key: {{API_KEY}}
+    Authorization: Bearer {{ACCESS_TOKEN}}
+    Body
+    {
+      "loanId": "2182hjdhshdbwbdgwsdwa"
+    }
+      
+// RESPONSE //
+// Success Response //
+{
+    "status": true,
+    "code": 200,
+    "message": "Success",
+    "data": {
+        "loanList": [
+            {
+                "loanId": "123e4567-e89b-12d3-a456-426614174000",
+                "loanInstallmentId": "kkjsdhf-1234-5678-abcd-efghijklmnop",
+                "loanAmount": 4000000,
+                "tenorMonth": 3,
+                "paymentAt": "2024-07-01",
+                "dueDateAt": "2024-07-01",
+                "createdAt": "2024-07-01",
+                "updatedAt": "2024-07-01",
+                "statusLoan": {
+                    "id": "dwsnbxwnjwdwksq212jshand",
+                    "description": "active",
+                }
+            },
+             {
+                "loanId": "123e4567-e89b-12d3-a456-426614174000",
+                "loanInstallmentId": "kkjsdhf-1234-5678-abcd-efghijklmnop",
+                "loanAmount": 12000000,
+                "tenorMonth": 12,
+                "paymentAt": "2025-09-01",
+                "dueDateAt": "2025-09-01",
+                "createdAt": "2025-09-01",
+                "updatedAt": "2025-09-01",
+                "statusLoan": {
+                    "id": "dwsnbxwnjwdwksq212jshand",
+                    "description": "inactive",
+                }
+            }
+        ]
+    }
+}   
+// Failed Response //
+{
+    "status": true,
+    "code": 404,
+    "message": "Failed to get user loan, user loan not found",
+    "data": null
+}

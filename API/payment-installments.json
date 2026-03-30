@@ -1,0 +1,36 @@
+METHOD /POST
+{{HOST}}/api/v1/payment/installments
+
+// REQUEST //
+    Header
+    Content-Type:application/json
+    x-api-Key: {{API_KEY}}
+    Authorization: Bearer {{ACCESS_TOKEN}}
+    Body
+    {
+        "loanId": "2182hjdhshdbwbdgwsdwa",
+        "loanInstallmentId": "123e4567-e89b-12d3-a456-426614174000",
+        "amount": 12000000,
+        "paymentAt": "2024-07-01",
+        "paymentMethod": "transfer",
+    }
+      
+// RESPONSE //
+// Success Response //
+{
+    "status": true,
+    "code": 200,
+    "message": "Success",
+    "data": {
+        "loadId": "123e4567-e89b-12d3-a456-426614174000",
+        "loanInstallmentId": "123e4567-e89b-12d3-a456-426614174000",
+        "installmentNumber": 3,
+        "message": "Payment Successfully",
+}
+// Failed Response //
+{
+    "status": true,
+    "code": 404,
+    "message": "Failed to process payment installments, please try again later",
+    "data": null
+}

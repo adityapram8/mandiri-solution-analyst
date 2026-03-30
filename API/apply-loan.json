@@ -1,0 +1,38 @@
+METHOD /POST
+{{HOST}}/api/v1/loan/apply
+
+// REQUEST //
+    Header
+    Content-Type:application/json
+    x-api-Key: {{API_KEY}}
+    Authorization: Bearer {{ACCESS_TOKEN}}
+    Body
+    {
+        "userId": "abcd1234-5678-90ef-ghij-klmnopqrstuv",
+        "loanId": "2182hjdhshdbwbdgwsdwa",
+        "loanAmount": 12000000,
+        "tenorMonth": 12,
+        "statusLoan": {
+            "id": "dwsnbxwnjwdwksq212jshand",
+            "status": "pending",
+        },
+        "reason": "Waiting for approval" // IGNORE
+    }
+      
+// RESPONSE //
+// Success Response //
+{
+    "status": true,
+    "code": 200,
+    "message": "Success",
+    "data": {
+        "loadId": "123e4567-e89b-12d3-a456-426614174000",
+        "message": "Loan Approved Successfully",
+}
+// Failed Response //
+{
+    "status": true,
+    "code": 404,
+    "message": "Failed to apply loan, your have an active loan",
+    "data": null
+}

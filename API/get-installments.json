@@ -1,0 +1,77 @@
+METHOD /GET
+{{HOST}}/api/v1/loan/:id
+
+// REQUEST //
+    Header
+    Content-Type:application/json
+    x-api-Key: {{API_KEY}}
+    Authorization: Bearer {{ACCESS_TOKEN}}
+    Body
+    {
+        "userId": "abcd1234-5678-90ef-ghij-klmnopqrstuv",
+        "loanId": "2182hjdhshdbwbdgwsdwa",
+        "loanAmount:" 120000000,
+        "tenorMonth": 3,
+        "statusLoan": {
+            "id": "dwsnbxwnjwdwksq212jshand",
+            "status": "active",
+        },
+    }
+      
+// RESPONSE //
+// Success Response //
+{
+    "status": true,
+    "code": 200,
+    "message": "Success",
+    "data": {
+        "userId": "abcd1234-5678-90ef-ghij-klmnopqrstuv",
+        "loadId": "123e4567-e89b-12d3-a456-426614174000",
+        "installments": [
+            {
+                "loadInstallmentId": "123e4567-e89b-12d3-a456-426614174000",
+                "installmentNumber": "1",
+                "amount": 4000000,
+                "paymentMethod": "Transfer",
+                "paymentAt": "2024-07-01",
+                "dueDateAt": "2024-07-01",
+                "createdAt": "2024-07-01",
+                "updatedAt": "2024-07-01",
+                "status": "paid"
+            },
+            {
+                "loadInstallmentId": "123e4567-e89b-12d3-a456-426614174000",
+                "installmentNumber": "2",
+                "amount": 4000000,
+                "paymentMethod": "null",
+                "paymentAt": "null",
+                "dueDateAt": "2024-08-01",
+                "createdAt": "2024-08-01",
+                "updatedAt": "2024-08-01",
+                "status": "unpaid"
+            },
+            {
+                "loadInstallmentId": "123e4567-e89b-12d3-a456-426614174000",
+                "installmentNumber": "3",
+                "amount": 4000000,
+                "paymentMethod": "null",
+                "paymentAt": "null",
+                "dueDateAt": "2024-09-01",
+                "createdAt": "2024-09-01",
+                "updatedAt": "2024-09-01",
+                "status": "unpaid"
+            }
+        ],
+        "statusLoan": {
+            "id": "dwsnbxwnjwdwksq212jshand",
+            "status": "active",
+        }
+    }
+} 
+// Failed Response //
+{
+    "status": true,
+    "code": 404,
+    "message": "Failed to get installments, loan not found",
+    "data": null
+}
